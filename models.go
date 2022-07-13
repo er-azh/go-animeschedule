@@ -27,51 +27,60 @@ type Timetable []TimetableShow
 
 // TimetableShow is a single entry in a Timetable
 type TimetableShow struct {
-	AirType                 AirType           `json:"AirType"`
-	AiringStatus            string            `json:"AiringStatus"`
-	Chinese                 bool              `json:"Chinese"`
+	EpisodeDate             time.Time         `json:"EpisodeDate"`
 	DelayedFrom             time.Time         `json:"DelayedFrom"`
 	DelayedUntil            time.Time         `json:"DelayedUntil"`
+	Romaji                  *string           `json:"Romaji,omitempty"`
+	Streams                 map[string]string `json:"Streams"`
 	English                 *string           `json:"English,omitempty"`
-	EpisodeDate             time.Time         `json:"EpisodeDate"`
-	EpisodeNumber           int               `json:"EpisodeNumber"`
-	Episodes                *int              `json:"Episodes,omitempty"`
-	ImageVersionRoute       string            `json:"ImageVersionRoute"`
 	Japanese                *string           `json:"Japanese,omitempty"`
 	LengthMin               *int              `json:"LengthMin,omitempty"`
-	Romaji                  *string           `json:"Romaji,omitempty"`
-	Route                   string            `json:"Route"`
+	Episodes                *int              `json:"Episodes,omitempty"`
+	AirType                 AirType           `json:"AirType"`
+	ImageVersionRoute       string            `json:"ImageVersionRoute"`
 	Status                  string            `json:"Status"`
-	Streams                 map[string]string `json:"Streams"`
-	SubtractedEpisodeNumber int               `json:"SubtractedEpisodeNumber"`
+	AiringStatus            string            `json:"AiringStatus"`
+	Route                   string            `json:"Route"`
 	Title                   string            `json:"Title"`
+	EpisodeNumber           int               `json:"EpisodeNumber"`
+	SubtractedEpisodeNumber int               `json:"SubtractedEpisodeNumber"`
+	Chinese                 bool              `json:"Chinese"`
 }
 
 // ShowDetail contains details about a show
 type ShowDetail struct {
-	Days              Weekdays  `json:"Days"`
-	DelayedFrom       time.Time `json:"DelayedFrom"`
-	DelayedUntil      time.Time `json:"DelayedUntil"`
-	Description       string    `json:"Description"`
-	DubDelayedFrom    time.Time `json:"DubDelayedFrom"`
-	DubDelayedUntil   time.Time `json:"DubDelayedUntil"`
-	DubPremier        time.Time `json:"DubPremier"`
-	DubTime           time.Time `json:"DubTime"`
-	Episodes          int       `json:"Episodes"`
-	Genres            []Keyword `json:"Genres"`
-	ImageVersionRoute string    `json:"ImageVersionRoute"`
-	JpnTime           time.Time `json:"JpnTime"`
-	LengthMin         int       `json:"LengthMin"`
-	MediaTypes        []Keyword `json:"MediaTypes"`
-	Month             string    `json:"Month"`
-	Names             struct {
+	JpnTime         time.Time         `json:"JpnTime"`
+	DelayedFrom     time.Time         `json:"DelayedFrom"`
+	DelayedUntil    time.Time         `json:"DelayedUntil"`
+	SubDelayedUntil time.Time         `json:"SubDelayedUntil"`
+	DubDelayedFrom  time.Time         `json:"DubDelayedFrom"`
+	DubDelayedUntil time.Time         `json:"DubDelayedUntil"`
+	DubPremier      time.Time         `json:"DubPremier"`
+	DubTime         time.Time         `json:"DubTime"`
+	SubDelayedFrom  time.Time         `json:"SubDelayedFrom"`
+	Premier         time.Time         `json:"Premier"`
+	SubTime         time.Time         `json:"SubTime"`
+	SubPremier      time.Time         `json:"SubPremier"`
+	Websites        map[string]string `json:"Websites"`
+	Season          struct {
+		Route  string `json:"Route"`
+		Season string `json:"Season"`
+		Title  string `json:"Title"`
+		Year   string `json:"Year"`
+	} `json:"Season"`
+	Names struct {
 		Abbreviation string `json:"Abbreviation"`
 		English      string `json:"English"`
 		Japanese     string `json:"Japanese"`
 		Romaji       string `json:"Romaji"`
 	} `json:"Names"`
-	Premier   time.Time `json:"Premier"`
-	Relations struct {
+	Status            string `json:"Status"`
+	Month             string `json:"Month"`
+	Description       string `json:"Description"`
+	Route             string `json:"Route"`
+	ImageVersionRoute string `json:"ImageVersionRoute"`
+	Title             string `json:"Title"`
+	Relations         struct {
 		Alternatives []string `json:"Alternatives"`
 		Other        []string `json:"Other"`
 		Parents      []string `json:"Parents"`
@@ -80,23 +89,14 @@ type ShowDetail struct {
 		SideStories  []string `json:"SideStories"`
 		Spinoffs     []string `json:"Spinoffs"`
 	} `json:"Relations"`
-	Route  string `json:"Route"`
-	Season struct {
-		Route  string `json:"Route"`
-		Season string `json:"Season"`
-		Title  string `json:"Title"`
-		Year   string `json:"Year"`
-	} `json:"Season"`
-	Sources         []Keyword         `json:"Sources"`
-	Status          string            `json:"Status"`
-	Studios         []Keyword         `json:"Studios"`
-	SubDelayedFrom  time.Time         `json:"SubDelayedFrom"`
-	SubDelayedUntil time.Time         `json:"SubDelayedUntil"`
-	SubPremier      time.Time         `json:"SubPremier"`
-	SubTime         time.Time         `json:"SubTime"`
-	Title           string            `json:"Title"`
-	Websites        map[string]string `json:"Websites"`
-	Year            int               `json:"Year"`
+	Sources    []Keyword `json:"Sources"`
+	Studios    []Keyword `json:"Studios"`
+	Genres     []Keyword `json:"Genres"`
+	MediaTypes []Keyword `json:"MediaTypes"`
+	Year       int       `json:"Year"`
+	LengthMin  int       `json:"LengthMin"`
+	Episodes   int       `json:"Episodes"`
+	Days       Weekdays  `json:"Days"`
 }
 
 type Weekdays struct {
